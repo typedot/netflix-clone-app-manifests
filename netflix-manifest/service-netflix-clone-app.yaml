@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels: 
+    app.kubernetes.io/instance: netflix-clone-app
+  name: netflix-clone-app-service-resource
+  #namespace: apps101
+spec:
+  selector:
+    app: netflix
+  ports:
+  - protocol: TCP
+    port: 80                 # Expose port 80
+    targetPort: 3001
+  type: LoadBalancer

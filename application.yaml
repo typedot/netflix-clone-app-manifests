@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'netflix-clone-app'
+  namespace: argocd
+spec:
+  destination:
+    #name: 'netflix-clone-app-destination'
+    namespace: apps101
+    server: 'https://kubernetes.default.svc'
+
+  source:
+    repoURL: 'https://github.com/typedot/netflix-clone-app-manifests.git'
+    targetRevision: HEAD
+    path: netflix-manifest
+
+  #sources: []
+
+  project: 'default'
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
